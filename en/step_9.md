@@ -3,6 +3,7 @@
 Add one improvement to make the map more informative.
 
 You could:
+
 --- task ---
 
 Print the date and duration as well as the shape
