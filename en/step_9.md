@@ -1,4 +1,3 @@
-<!-- step_9.md -->
 <h2 class="c-project-heading--task">Challenge: Improve the interaction</h2>
 
 Add one improvement to make the map more informative.
