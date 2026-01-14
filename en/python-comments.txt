@@ -1,0 +1,114 @@
+Runs once at the start
+
+Choose the size of your canvas
+
+Runs every frame
+
+Use the lat and long data to calculate the x y coords for the shape
+
+return coordinates to place map pin
+
+Red = 50, Green = 70, Blue = 206
+
+Change the red value
+
+Change the green value
+
+Change the blue value
+
+Background colour
+
+Initialises the variable so that it can be added to it
+
+Opens the file temporarily
+
+Loops through each line in the file
+
+Adds the line to the current contents of the variable
+
+Initialises the list so that data can be appended (added) to it
+
+Adds each line as an item in the list
+
+Split each item separated by a comma into a list
+
+Add the info list to the my_text_file list
+
+Initialise the list to store the eruptions
+
+Split the line into a list
+
+Create a dictionary for the event
+
+Store dictionary in a list
+
+Strip away the \n
+
+Display a message depending on what shape the user has pressed
+
+Put code to run when the mouse is pressed here
+
+For each line in the text file
+
+Loop through all of the expedition dictionaries in the expeditions list
+
+Check if the expedition number is equal to 3
+
+If true, store the matching mission launch date
+
+Loop through all of the sighting dictionaries in the ufo_sightings list
+
+Store the longitude data
+
+Store the latitude data
+
+Start with a wrong answer for choice
+
+Keep asking the user for the right answer
+
+A fireball UFO was spotted here!
+
+A circle-shaped UFO was spotted here!
+
+A triangle-shaped UFO was spotted here!
+
+A UFO made of light was spotted here!
+
+A disc-shaped UFO was spotted here!
+
+A random-shaped UFO was spotted here!
+
+A cylinder-shaped UFO was spotted here!
+
+There were no UFO sightings in this area!
+
+A volcano erupted in ' + facts['region'] + ' in ' + facts['year']
+
+Region not detected
+
+World Happiness Index Data 2019
+
+What would you like to see?
+        1. How happy are countries overall?
+        2. How much does national wealth matter?
+        3. How well does your country look after the disadvantaged?
+        4. How generous are people?
+        5. How fair and honest are people?
+        6. How much freedom do you have?
+    Choice: 
+
+Please enter 1 to encode/decode text, or 2 to perform frequency analysis:
+
+Toy
+
+Sporting
+
+Terrier
+
+Working
+
+Herding
+
+Hound
+
+Non Sporting

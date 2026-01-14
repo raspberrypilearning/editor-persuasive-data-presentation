@@ -1,14 +1,26 @@
-title: Project title in sentence case
+title: UFO sightings map
 hero_image: images/banner.png
-description: A short description of the project
-listed: false
-pdf: false
+description: Plot UFO sightings from a CSV file on an interactive world map
+meta_title: Python coding projects for kids and teens | UFO sightings map
+meta_description: Learn Python with the Raspberry Pi Foundation's coding projects for kids and teens. Plot UFO sightings from a CSV file on an interactive world map and click markers to explore the data.
+version: 4
+listed: true
+copyedit: true
+last_tested: '2026-01-14'
 steps:
   - title: What you will make
-  - title: Step title
+  - title: Import p5 and the coordinate helper
+  - title: Build and test - Load and display the map
     completion:
-      - engaged      
-  - title: Challenge
-    challenge: true
+      - engaged
+  - title: Build and test - Test coordinate conversion with one marker
+  - title: Build and test - Load UFO data from the CSV file
+    completion:
+      - internal
+  - title: Expand and test - Plot all sightings as simple dots
+  - title: Expand and test - Draw different markers for different UFO shapes
+  - title: Expand and test - Make markers clickable
     completion:
       - external
+  - title: Challenge - Improve the interaction
+    challenge: true
