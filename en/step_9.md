@@ -1,14 +1,20 @@
 <!-- step_9.md -->
 <h2 class="c-project-heading--task">Challenge: Improve the interaction</h2>
 
---- task ---
 Add one improvement to make the map more informative.
+
+You could:
+--- task ---
+Print the date and duration as well as the shape
 --- /task ---
 
-Choose one:
-- Print the date and duration as well as the shape
-- Change marker size based on the duration
-- Swap the background to `mercator_bw.png`
+--- task ---
+Change marker size based on the duration or elevation
+--- /task ---
+
+--- task ---
+Swap the background to `mercator_bw.png`
+--- /task ---
 
 <div class="c-project-callout c-project-callout--tip">
 
