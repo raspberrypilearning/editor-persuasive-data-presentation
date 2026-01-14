@@ -56,8 +56,22 @@ run()
 
 --- task ---
 **Test:** Run your code.  
-You should see one sighting printed as a dictionary in the output.
+
 --- /task ---
+
+--- task ---
+
+Click on the `Text Output` tab above the map. You should see the data for one sighting printed in the output.
+
+--- /task ---
+
+<div class="c-project-output">
+<pre><img
+  class="fit-picture"
+  src="images/textoutput.png"
+  alt=" A dictionary listing for a UFO sighting." />
+</pre>
+</div>
 
 <div class="c-project-callout c-project-callout--debug">
 

@@ -65,3 +65,11 @@ run()
 **Test:** Run your code.  
 You should see many small red dots on the map.
 --- /task ---
+
+<div class="c-project-output">
+<pre><img
+  class="fit-picture"
+  src="images/red-dots.png"
+  alt=" A world map with many small red dots appearing on the map." />
+</pre>
+</div>

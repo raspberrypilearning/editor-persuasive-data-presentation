@@ -44,6 +44,14 @@ run()
 A red dot should appear around the UK.
 --- /task ---
 
+<div class="c-project-output">
+<pre><img
+  class="fit-picture"
+  src="images/ukdot.png"
+  alt=" A red dot appears over the UK" />
+</pre>
+</div>
+
 <div class="c-project-callout c-project-callout--tip">
 
 ### Tip

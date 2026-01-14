@@ -20,14 +20,6 @@ line_highlights: 5-14,23,28,33,38,43,48,63-82
 from p5 import *
 from xy import get_xy_coords
 
-fireball = Color(252, 186, 3)
-circle = Color(32, 201, 49)
-tri = Color(241, 245, 32)
-light = Color(247, 247, 245)
-disk = Color(189, 189, 172)
-cylinder = Color(73, 99, 230)
-misc = Color(255, 0, 0)
-
 def preload():
     global world_map
     world_map = load_image('mercator.jpeg')
@@ -83,6 +75,13 @@ def setup():
     image(world_map, 0, 0, width, height)
     load_data('ufo-sightings.csv')
     draw_data()
+    fireball = Color(252, 186, 3). # SORT THIS OUT HERE AND LOOK AT THE HIGHLIGHTING
+    circle = Color(32, 201, 49)
+    tri = Color(241, 245, 32)
+    light = Color(247, 247, 245)
+    disk = Color(189, 189, 172)
+    cylinder = Color(73, 99, 230)
+    misc = Color(255, 0, 0)
 
 def mouse_pressed():
     pixel_colour = Color(get(mouse_x, mouse_y)).hex
@@ -113,6 +112,14 @@ run()
 **Test:** Run your code and click different markers.  
 A message should print in the output.
 --- /task ---
+
+<div class="c-project-output">
+<pre><img
+  class="fit-picture"
+  src="images/mapclick.gif"
+  alt=" A world map with many small multicoloured dots appearing on the map in different shapes. The user clicks a dot and gets shown wirtten text." />
+</pre>
+</div>
 
 <div class="c-project-callout c-project-callout--debug">
 

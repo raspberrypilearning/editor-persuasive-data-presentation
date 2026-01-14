@@ -86,3 +86,11 @@ run()
 **Test:** Run your code.  
 Markers should now vary by colour and shape.
 --- /task ---
+
+<div class="c-project-output">
+<pre><img
+  class="fit-picture"
+  src="images/colour-dots.png"
+  alt=" A world map with many small multicoloured dots appearing on the map in different shapes." />
+</pre>
+</div>
