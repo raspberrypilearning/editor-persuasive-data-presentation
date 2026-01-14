@@ -39,5 +39,9 @@ You should see the world map.
 --- /task ---
 
 <div class="c-project-output">
-<pre>A world map image fills the window.</pre>
+<pre><img
+  class="fit-picture"
+  src="images/mapdisplay.png"
+  alt=" A world map appears in the editor" />
+</pre>
 </div>
