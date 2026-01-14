@@ -1,0 +1,67 @@
+<h2 class="c-project-heading--task">Plot all sightings as simple dots</h2>
+
+--- task ---
+Loop through the dataset and draw a dot for each sighting.
+--- /task ---
+
+Convert each sighting’s latitude/longitude to x/y coordinates and draw a small marker.
+
+<div class="c-project-code">
+--- code ---
+---
+language: python
+filename: main.py
+line_numbers: true
+line_number_start: 1
+line_highlights: 25-39,44
+---
+
+#!/bin/python3
+from p5 import *
+from xy import get_xy_coords
+
+def preload():
+    global world_map
+    world_map = load_image('mercator.jpeg')
+
+def load_data(file_name):
+    global ufo_sightings
+    ufo_sightings = []
+    with open(file_name) as f:
+        for line in f:
+            info = line.strip().split(',')
+            ufo_sightings.append({
+                'date': info[0],
+                'time': info[1],
+                'state': info[2],
+                'country': info[3],
+                'shape': info[4],
+                'duration': info[5],
+                'latitude': info[6],
+                'longitude': info[7]
+            })
+
+def draw_data():
+    no_stroke()
+    fill(255, 0, 0)
+
+    for sighting in ufo_sightings:
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))
+        ellipse(coords['x'], coords['y'], 4, 4)
+
+def setup():
+    size(991, 768)
+    image(world_map, 0, 0, width, height)
+
+    load_data('ufo-sightings.csv')
+    draw_data()
+
+run()
+
+--- /code ---
+</div>
+
+--- task ---
+**Test:** Run your code.  
+You should see many small red dots on the map.
+--- /task ---
