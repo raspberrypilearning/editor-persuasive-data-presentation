@@ -13,9 +13,8 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 1
-line_highlights: 5-13
+line_highlights: 4-12
 ---
-#!/bin/python3
 from p5 import *                 # Import p5 so we can draw shapes and images
 from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
 

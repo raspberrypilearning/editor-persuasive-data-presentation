@@ -17,77 +17,46 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 1
-line_highlights: 6-16,101-121
+line_highlights: 7, 10, 13, 16, 19, 22, 25,59-76, 79-88
 ---
-#!/bin/python3
 from p5 import *                 # Import p5 so we can draw graphics
 from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
 
-def draw_ufo(shape, x, y):      # Draw the UFO on the map
-
-    global fireball, circle, tri, light, disk, misc, cylinder  # Store colours so clicks can be checked later
-    fireball = Color(252, 186, 3)   # Colour for fireball sightings
-    circle = Color(32, 201, 49)     # Colour for circle sightings
-    tri = Color(241, 245, 32)       # Colour for triangle sightings
-    light = Color(247, 247, 245)    # Colour for light sightings
-    disk = Color(189, 189, 172)     # Colour for disk sightings
-    misc = Color(255, 0, 0)         # Default colour for other shapes
-    cylinder = Color(73, 99, 230)   # Colour for cylinder/cigar sightings
-
+def draw_ufo(shape, x, y):      # Draw the UFO on the map    
+    no_stroke()     
     if shape == 'fireball':
-        fill(fireball)
+        fill(fireball)          # Use the colour variable below
         ellipse(x, y, 15, 10)
     elif shape == 'circle':
-        fill(circle)
+        fill(circle)          # Use the colour variable below
         ellipse(x, y, 8, 8)
     elif shape == 'triangle':
-        fill(tri)
+        fill(tri)          # Use the colour variable below
         triangle(x-8, y-15, x, y, x+8, y-15)
     elif shape == 'light':
-        fill(light)
+        fill(light)          # Use the colour variable below
         ellipse(x, y, 15, 15)
     elif shape == 'disk':
-        fill(disk)
+        fill(disk)          # Use the colour variable below
         ellipse(x, y, 20, 10)
     elif shape == 'cylinder' or shape == 'cigar':
-        fill(cylinder)
+        fill(cylinder)          # Use the colour variable below
         rect(x, y, 20, 10)
     else:
-        fill(misc)
+        fill(misc)          # Use the colour variable below
         ellipse(x, y, 10, 10)
-
 
 def preload():
     global map                   # Make the map image available to the whole program
     map = load_image('mercator.jpeg')  # Load the map image before drawing starts
 
-
-def setup():
-
-    size(991, 768)               # Set the size of the drawing window
-    load_data('ufo-sightings.csv')  # Load the UFO sighting data
-    image(
-        map,  # The image to draw
-        0,  # The x of the top-left corner
-        0,  # The y of the top-left corner
-        width,  # The width of the image
-        height  # The height of the image
-    )
-    draw_data()                  # Plot the UFO sightings
-
-
 def load_data(file_name):
-
-    # Create a dictionary for each siting based on the data in the csv file
-
     global ufo_sightings         # Store all sightings so other functions can use them
-
     ufo_sightings = []           # Start with an empty list
-
     with open(file_name) as f:   # Open the CSV file
         for line in f:           # Read the file one line at a time
-            info = line.split(',')  # Split the line into columns
-            ufo_dict = {
+            info = line.strip().split(',')  # Split the line into columns
+            ufo_sightings.append({          # Store one sighting as a dictionary
                 'date': info[0],
                 'time': info[1],
                 'state': info[2],
@@ -96,31 +65,14 @@ def load_data(file_name):
                 'duration': info[5],
                 'latitude': info[6],
                 'longitude': info[7]
-            }
-            ufo_sightings.append(ufo_dict)  # Store dictionary in a list
+            })
 
+def draw_data():
+    for sighting in ufo_sightings:  # Draw one marker for each sighting
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))  # Convert lat/long to x/y
+        draw_ufo(sighting['shape'], coords['x'], coords['y'])  # Draw the correct marker for the shape
 
-def draw_data():        # Use the lat and long data to calculate the x y coords for the shape
-
-    for sighting in ufo_sightings:
-
-        longitude = float(sighting['longitude'])
-        latitude = float(sighting['latitude'])
-
-        region_coords = get_xy_coords(longitude, latitude)
-
-        region_x = region_coords['x']
-        region_y = region_coords['y']
-
-        shape = sighting['shape']
-
-        draw_ufo(shape, region_x, region_y)
-
-
-def mouse_pressed():
-
-    # Display a message depending on what shape the user has pressed
-
+def mouse_pressed():        # Display a message depending on what shape the user has pressed
     pixel_colour = Color(get(mouse_x, mouse_y)).hex  # Get the colour where the user clicked
     if pixel_colour == fireball.hex:
         print('A fireball UFO was spotted here!')
@@ -139,6 +91,21 @@ def mouse_pressed():
     else:
         print('There were no UFO sightings in this area!')
 
+def setup():
+    global fireball, circle, tri, light, disk, misc, cylinder  # Store colours so clicks can be checked later
+    
+    fireball = Color(252, 186, 3)   # Colour for fireball sightings
+    circle = Color(32, 201, 49)     # Colour for circle sightings
+    tri = Color(241, 245, 32)       # Colour for triangle sightings
+    light = Color(247, 247, 245)    # Colour for light sightings
+    disk = Color(189, 189, 172)     # Colour for disk sightings
+    misc = Color(255, 0, 0)         # Default colour for other shapes
+    cylinder = Color(73, 99, 230)   # Colour for cylinder/cigar sightings
+    
+    size(991, 768)               # Set the size of the drawing window
+    load_data('ufo-sightings.csv')  # Load the UFO sighting data
+    image(map, 0, 0, width, height)  # Draw the map to fill the window
+    draw_data()                  # Plot the UFO sightings
 
 run()                            # Start the p5 sketch
 
