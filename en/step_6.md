@@ -13,24 +13,23 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 1
-line_highlights: 25-39,44
+line_highlights: 25-32,38
 ---
-
 #!/bin/python3
-from p5 import *
-from xy import get_xy_coords
+from p5 import *                 # Import p5 so we can draw graphics
+from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
 
 def preload():
-    global world_map
-    world_map = load_image('mercator.jpeg')
+    global world_map             # Make the map image available to the whole program
+    world_map = load_image('mercator.jpeg')  # Load the map image before drawing starts
 
 def load_data(file_name):
-    global ufo_sightings
-    ufo_sightings = []
-    with open(file_name) as f:
-        for line in f:
-            info = line.strip().split(',')
-            ufo_sightings.append({
+    global ufo_sightings         # Store all sightings so other functions can use them
+    ufo_sightings = []           # Start with an empty list
+    with open(file_name) as f:   # Open the CSV file
+        for line in f:           # Read the file one line at a time
+            info = line.strip().split(',')  # Split the line into columns
+            ufo_sightings.append({          # Store one sighting as a dictionary
                 'date': info[0],
                 'time': info[1],
                 'state': info[2],
@@ -42,24 +41,25 @@ def load_data(file_name):
             })
 
 def draw_data():
-    no_stroke()
-    fill(255, 0, 0)
+    no_stroke()                  # Turn off outlines so the dots are clearer
+    fill(255, 0, 0)              # Set the colour for the markers
 
-    for sighting in ufo_sightings:
-        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))
-        ellipse(coords['x'], coords['y'], 4, 4)
+    for sighting in ufo_sightings:  # Draw one marker for each sighting
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))  # Convert lat/long to x/y
+        ellipse(coords['x'], coords['y'], 4, 4)  # Draw a small dot at the location
 
 def setup():
-    size(991, 768)
-    image(world_map, 0, 0, width, height)
+    size(991, 768)               # Set the size of the drawing window
+    image(world_map, 0, 0, width, height)  # Draw the map to fill the window
 
-    load_data('ufo-sightings.csv')
-    draw_data()
+    load_data('ufo-sightings.csv')  # Load the UFO sighting data
+    draw_data()                     # Plot the sightings as dots
 
-run()
+run()                            # Start the p5 sketch
 
 --- /code ---
 </div>
+
 
 --- task ---
 **Test:** Run your code.  
