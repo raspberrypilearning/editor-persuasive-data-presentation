@@ -4,7 +4,7 @@
 Read the UFO sightings CSV and store each row.
 --- /task ---
 
-You will store sightings in a list so you can draw them later.
+You will store sightings data from a spreadsheet in a list, so you can use it later.
 
 <div class="c-project-code">
 --- code ---
@@ -13,9 +13,8 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 1
-line_highlights: 9-24,29-30
+line_highlights: 4-6,8-23,28-29
 ---
-#!/bin/python3
 from p5 import *                 # Import p5 so we can draw graphics
 from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
 
@@ -26,7 +25,6 @@ def preload():
 def load_data(file_name):
     global ufo_sightings         # Store all sightings so other functions can use them
     ufo_sightings = []           # Start with an empty list
-
     with open(file_name) as f:   # Open the CSV file
         for line in f:           # Read the file one line at a time
             info = line.strip().split(',')  # Split the line into columns
@@ -44,7 +42,6 @@ def load_data(file_name):
 def setup():
     size(991, 768)               # Set the size of the drawing window
     image(world_map, 0, 0, width, height)  # Draw the map to fill the window
-
     load_data('ufo-sightings.csv')  # Load the UFO sighting data
     print(ufo_sightings[0])         # Print the first sighting to check it loaded
 
@@ -53,15 +50,8 @@ run()                            # Start the p5 sketch
 --- /code ---
 </div>
 
-
 --- task ---
 **Test:** Run your code.  
-
---- /task ---
-
---- task ---
-
-Click on the `Text Output` tab above the map. You should see the data for one sighting printed in the output.
 
 --- /task ---
 
@@ -78,5 +68,6 @@ Click on the `Text Output` tab above the map. You should see the data for one si
 ### Debugging
 
 - If you get `IndexError`, check for blank lines in the CSV, or skip empty lines in your loop
+- If you can't see where the output is, click on the `Split view` tab above the map. You should see the data for one sighting printed in the text output.
 
 </div>
