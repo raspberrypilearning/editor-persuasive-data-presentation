@@ -17,7 +17,7 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 1
-line_highlights: 7, 10, 13, 16, 19, 22, 25,59-76, 79-88
+line_highlights: 7, 10, 13, 16, 19, 22, 25,54-71, 76-83
 ---
 from p5 import *                 # Import p5 so we can draw graphics
 from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
