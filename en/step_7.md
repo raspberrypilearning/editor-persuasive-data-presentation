@@ -13,24 +13,23 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 1
-line_highlights: 23-48,57
+line_highlights: 23-47,55
 ---
-
 #!/bin/python3
-from p5 import *
-from xy import get_xy_coords
+from p5 import *                 # Import p5 so we can draw graphics
+from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
 
 def preload():
-    global world_map
-    world_map = load_image('mercator.jpeg')
+    global world_map             # Make the map image available to the whole program
+    world_map = load_image('mercator.jpeg')  # Load the map image before drawing starts
 
 def load_data(file_name):
-    global ufo_sightings
-    ufo_sightings = []
-    with open(file_name) as f:
-        for line in f:
-            info = line.strip().split(',')
-            ufo_sightings.append({
+    global ufo_sightings         # Store all sightings so other functions can use them
+    ufo_sightings = []           # Start with an empty list
+    with open(file_name) as f:   # Open the CSV file
+        for line in f:           # Read the file one line at a time
+            info = line.strip().split(',')  # Split the line into columns
+            ufo_sightings.append({          # Store one sighting as a dictionary
                 'date': info[0],
                 'time': info[1],
                 'state': info[2],
@@ -42,45 +41,46 @@ def load_data(file_name):
             })
 
 def draw_ufo(shape, x, y):
-    no_stroke()
+    no_stroke()                  # Turn off outlines so the shapes are clearer
     if shape == 'fireball':
-        fill(252, 186, 3)
-        ellipse(x, y, 15, 10)
+        fill(252, 186, 3)        # Set the colour for fireball sightings
+        ellipse(x, y, 15, 10)    # Draw a wider oval
     elif shape == 'circle':
-        fill(32, 201, 49)
-        ellipse(x, y, 8, 8)
+        fill(32, 201, 49)        # Set the colour for circle sightings
+        ellipse(x, y, 8, 8)      # Draw a small circle
     elif shape == 'triangle':
-        fill(241, 245, 32)
-        triangle(x - 8, y - 15, x, y, x + 8, y - 15)
+        fill(241, 245, 32)       # Set the colour for triangle sightings
+        triangle(x - 8, y - 15, x, y, x + 8, y - 15)  # Draw a triangle marker
     elif shape == 'light':
-        fill(247, 247, 245)
-        ellipse(x, y, 15, 15)
+        fill(247, 247, 245)      # Set the colour for light sightings
+        ellipse(x, y, 15, 15)    # Draw a larger circle
     elif shape == 'disk':
-        fill(189, 189, 172)
-        ellipse(x, y, 20, 10)
+        fill(189, 189, 172)      # Set the colour for disk sightings
+        ellipse(x, y, 20, 10)    # Draw a flat oval
     elif shape == 'cylinder' or shape == 'cigar':
-        fill(73, 99, 230)
-        rect(x, y, 20, 10)
+        fill(73, 99, 230)        # Set the colour for cylinder/cigar sightings
+        rect(x, y, 20, 10)       # Draw a rectangle marker
     else:
-        fill(255, 0, 0)
-        ellipse(x, y, 10, 10)
+        fill(255, 0, 0)          # Use a default colour for other shapes
+        ellipse(x, y, 10, 10)    # Draw a default marker
 
 def draw_data():
-    for sighting in ufo_sightings:
-        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))
-        draw_ufo(sighting['shape'], coords['x'], coords['y'])
+    for sighting in ufo_sightings:  # Draw one marker for each sighting
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))  # Convert lat/long to x/y
+        draw_ufo(sighting['shape'], coords['x'], coords['y'])  # Draw the correct marker for the shape
 
 def setup():
-    size(991, 768)
-    image(world_map, 0, 0, width, height)
+    size(991, 768)               # Set the size of the drawing window
+    image(world_map, 0, 0, width, height)  # Draw the map to fill the window
 
-    load_data('ufo-sightings.csv')
-    draw_data()
+    load_data('ufo-sightings.csv')  # Load the UFO sighting data
+    draw_data()                     # Plot the sightings using different markers
 
-run()
+run()                            # Start the p5 sketch
 
 --- /code ---
 </div>
+
 
 --- task ---
 **Test:** Run your code.  
