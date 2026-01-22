@@ -13,7 +13,7 @@ language: python
 filename: main.py
 line_numbers: true
 line_number_start: 5
-line_highlights: 5-10, 16
+line_highlights: 9-14, 20
 ---
 def preload():
     global world_map
