@@ -22,10 +22,3 @@ Swap the background to `mercator_bw.png`
 
 --- /task ---
 
-<div class="c-project-callout c-project-callout--tip">
-
-### Tip
-
-If you want clicks to show the exact record details, store each marker’s x/y position alongside its sighting data when you draw it.
-
-</div>
