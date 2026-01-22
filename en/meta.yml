@@ -18,7 +18,6 @@ steps:
       - internal
   - title: Expand and test - Plot all sightings as simple dots
   - title: Expand and test - Draw different markers for different UFO shapes
-  - title: Expand and test - Make markers clickable
     completion:
       - external
   - title: Challenge - Improve the interaction
