@@ -1,11 +1,11 @@
-<!-- step_4.md -->
-<h2 class="c-project-heading--task">Test coordinate conversion with one marker</h2>
+<h2 class="c-project-heading--task">Load UFO data from the CSV file</h2>
 
 --- task ---
-Convert one latitude/longitude pair into x/y coordinates and draw a marker.
+Read the UFO sightings CSV and store each row.
 --- /task ---
 
-Before reading the dataset, test the conversion with a single known location.
+You will store sightings data from a spreadsheet in a list, so you can use it later. 
+Import the `load_data` function from the helper file, then load the data:
 
 <div class="c-project-code">
 --- code ---
@@ -13,42 +13,52 @@ Before reading the dataset, test the conversion with a single known location.
 language: python
 filename: main.py
 line_numbers: true
-line_number_start: 8
-line_highlights: 11-14
+line_number_start: 1
+line_highlights: 3,12-13
 ---
-def setup():
-    size(991, 768)               # Set the size of the drawing window
-    image(world_map, 0, 0, width, height)  # Draw the map to fill the window
-    coords = get_xy_coords(-0.1276, 51.5072)  # Convert longitude and latitude into x/y coordinates
-    fill(255, 0, 0)             # Set the colour for the test marker
-    no_stroke()                 # Turn off outlines
-    ellipse(coords['x'], coords['y'], 8, 8)  # Draw a small circle at the test location
+from p5 import *
+from xy import get_xy_coords
+from load_data import load_data
 
-run()                            # Start the p5 sketch
+def preload():
+    global world_map
+    world_map = load_image('mercator.jpeg')
+
+def setup():
+    size(991, 768)
+    image(world_map, 0, 0, width, height)
+    load_data('ufo-sightings.csv')  # Load the data
+    print(ufo_sightings[0])         # Print the first row
+
+run()
 
 --- /code ---
 </div>
 
-
 --- task ---
-**Test:** Run your code.  
-A red dot should appear around the UK.
---- /task ---
+**Test:** Run your code.
+You should see the information in the first line of the spreadsheet `ufo-sightings.csv` written in the Text Output window:
 
 <div class="c-project-output">
 <pre><img
   class="fit-picture"
-  src="images/ukdot.png"
-  alt=" A red dot appears over the UK" />
+  src="images/textoutput.png"
+  alt=" A dictionary listing for a UFO sighting." />
 </pre>
 </div>
 
-<div class="c-project-callout c-project-callout--tip">
+<div class="c-project-callout c-project-callout--debug">
 
-### Tip
+### Debugging
 
-If the dot appears in the wrong place, check you are passing:
-- longitude first
-- latitude second
+- If you can't see where the output is, click on the `Split view` tab above the map. You should see the data for one sighting printed in the text output.
 
 </div>
+
+--- /task ---
+
+--- task ---
+
+Change the number in `print(ufo_sightings[0])` and run your code again to see different data.
+
+--- /task ---

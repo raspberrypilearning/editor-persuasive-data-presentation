@@ -1,10 +1,14 @@
-<h2 class="c-project-heading--task">Draw different markers for different UFO shapes</h2>
+<!-- step_8.md -->
+<h2 class="c-project-heading--task">Make markers clickable</h2>
 
 --- task ---
-Draw a different marker depending on the reported UFO shape.
+Print a message when the user clicks on a UFO marker.
 --- /task ---
 
-The dataset includes a `shape` field. You can use it to draw different symbols and colours.
+You will:
+- Draw different coloured markers for different UFO shapes
+- Detect the colour of the pixel under the mouse pointer
+- Print a message based on the colour that was clicked
 
 <div class="c-project-code">
 --- code ---
@@ -12,63 +16,108 @@ The dataset includes a `shape` field. You can use it to draw different symbols a
 language: python
 filename: main.py
 line_numbers: true
-line_number_start: 21
-line_highlights: 25-47,52
+line_number_start: 1
+line_highlights: 8, 11, 14, 17, 20, 23, 26,38-39, 58-67
 ---
-                'latitude': info[6],
-                'longitude': info[7]
-            })
+from p5 import *
+from xy import get_xy_coords
+from load_data import load_data
 
 def draw_ufo(shape, x, y):
-    no_stroke()                  # Turn off outlines so the shapes are clearer
+    no_stroke()
     if shape == 'fireball':
-        fill(252, 186, 3)        # Set the colour for fireball sightings
-        ellipse(x, y, 15, 10)    # Draw a wider oval
+        fill(fireball)          # Use the matching colour
+        ellipse(x, y, 15, 10)
     elif shape == 'circle':
-        fill(32, 201, 49)        # Set the colour for circle sightings
-        ellipse(x, y, 8, 8)      # Draw a small circle
+        fill(circle)          # Use the matching colour
+        ellipse(x, y, 8, 8)
     elif shape == 'triangle':
-        fill(241, 245, 32)       # Set the colour for triangle sightings
-        triangle(x - 8, y - 15, x, y, x + 8, y - 15)  # Draw a triangle marker
+        fill(tri)          # Use the matching colour
+        triangle(x-8, y-15, x, y, x+8, y-15)
     elif shape == 'light':
-        fill(247, 247, 245)      # Set the colour for light sightings
-        ellipse(x, y, 15, 15)    # Draw a larger circle
+        fill(light)          # Use the matching colour
+        ellipse(x, y, 15, 15)
     elif shape == 'disk':
-        fill(189, 189, 172)      # Set the colour for disk sightings
-        ellipse(x, y, 20, 10)    # Draw a flat oval
+        fill(disk)          # Use the matching colour
+        ellipse(x, y, 20, 10)
     elif shape == 'cylinder' or shape == 'cigar':
-        fill(73, 99, 230)        # Set the colour for cylinder/cigar sightings
-        rect(x, y, 20, 10)       # Draw a rectangle marker
+        fill(cylinder)          # Use the matching colour
+        rect(x, y, 20, 10)
     else:
-        fill(255, 0, 0)          # Use a default colour for other shapes
-        ellipse(x, y, 10, 10)    # Draw a default marker
+        fill(misc)          # Use the matching colour
+        ellipse(x, y, 10, 10)
+
+def preload():
+    global map
+    map = load_image('mercator.jpeg')
 
 def draw_data():
-    for sighting in ufo_sightings:  # Draw one marker for each sighting
-        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))  # Convert lat/long to x/y
-        draw_ufo(sighting['shape'], coords['x'], coords['y'])  # Draw the correct marker for the shape
+    for sighting in ufo_sightings:
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))
+        draw_ufo(sighting['shape'], coords['x'], coords['y'])
+
+def mouse_pressed():        # Run when the mouse is pressed
+    pixel_colour = Color(get(mouse_x, mouse_y)).hex  # Colour under the mouse
+    if pixel_colour == fireball.hex:
+        print('A fireball UFO was spotted here!')
+    elif pixel_colour == circle.hex:
+        print('A circle shaped UFO was spotted here!')
+    elif pixel_colour == tri.hex:
+        print('A triangle shaped UFO was spotted here!')
+    elif pixel_colour == light.hex:
+        print('A UFO made of light was spotted here!')
+    elif pixel_colour == disk.hex:
+        print('A disk shaped UFO was spotted here!')
+    elif pixel_colour == misc.hex:
+        print('A random shaped UFO was spotted here!')
+    elif pixel_colour == cylinder.hex:
+        print('A cylinder shaped UFO was spotted here!')
+    else:
+        print('There were no UFO sightings in this area!')
 
 def setup():
-    size(991, 768)               # Set the size of the drawing window
-    image(world_map, 0, 0, width, height)  # Draw the map to fill the window
-    load_data('ufo-sightings.csv')  # Load the UFO sighting data
-    draw_data()                     # Plot the sightings using different markers
+    global fireball, circle, tri, light, disk, misc, cylinder  # Share colours for clicks
+    
+    fireball = Color(252, 186, 3)   # Colour for fireballs
+    circle = Color(32, 201, 49)     # Colour for circles
+    tri = Color(241, 245, 32)       # Colour for triangles
+    light = Color(247, 247, 245)    # Colour for lights
+    disk = Color(189, 189, 172)     # Colour for disks
+    misc = Color(255, 0, 0)         # Colour for other shapes
+    cylinder = Color(73, 99, 230)   # Colour for cylinders
+    
+    size(991, 768)
+    load_data('ufo-sightings.csv')
+    image(map, 0, 0, width, height)
+    draw_data()
 
-run()                            # Start the p5 sketch
+run()
 
 --- /code ---
 </div>
 
 
 --- task ---
-**Test:** Run your code.  
-Markers should now vary by colour and shape.
+**Test:** Run your code, then click on different markers.  
+You should see different messages in the output depending on what you clicked.
 --- /task ---
 
 <div class="c-project-output">
 <pre><img
   class="fit-picture"
-  src="images/colour-dots.png"
-  alt=" A world map with many small multicoloured dots appearing on the map in different shapes." />
+  src="images/mapclick.gif"
+  alt=" A world map with many small multicoloured dots appearing on the map in different shapes. The user clicks a dot and gets shown wirtten text." />
 </pre>
+</div>
+
+
+<div class="c-project-callout c-project-callout--debug">
+
+### Debugging
+
+- If clicking always prints “There were no UFO sightings in this area!”, check that the map image is drawn **before** `draw_data()`
+- If you see an error about `color` or `null`, make sure the sketch is running and the window has loaded before clicking
+- If every click says “no sightings”, check the markers are drawn after the map image
+- If colours never match, check you are using the same `Color(...)` objects for drawing and comparison
+
 </div>

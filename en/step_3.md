@@ -1,10 +1,8 @@
-<h2 class="c-project-heading--task">Load and display the map</h2>
+<!-- step_4.md -->
+<h2 class="c-project-heading--task">Test coordinate conversion with one marker</h2>
 
 --- task ---
-Load the map image and display it in a p5 window.
---- /task ---
-
-Use `preload()` to load the image before your sketch starts, then show it in `setup()`.
+Convert one latitude/longitude pair into x/y coordinates and draw a marker.
 
 <div class="c-project-code">
 --- code ---
@@ -12,35 +10,58 @@ Use `preload()` to load the image before your sketch starts, then show it in `se
 language: python
 filename: main.py
 line_numbers: true
-line_number_start: 1
-line_highlights: 4-12
+line_number_start: 8
+line_highlights: 11-14
 ---
-from p5 import *                 # Import p5 so we can draw shapes and images
-from xy import get_xy_coords     # Import helper to convert latitude/longitude to x/y
-
-def preload():
-    global world_map             # Make the map image available to the whole program
-    world_map = load_image('mercator.jpeg')  # Load the map image before drawing starts
-
 def setup():
-    size(991, 768)               # Set the size of the drawing window
-    image(world_map, 0, 0, width, height)  # Draw the map to fill the window
+    size(991, 768)
+    image(world_map, 0, 0, width, height)
+    coords = get_xy_coords(-0.1276, 51.5072)  # Convert lon/lat to x/y
+    fill(255, 0, 0)             # Red marker colour
+    no_stroke()                 # Turn off outlines
+    ellipse(coords['x'], coords['y'], 8, 8)  # Draw a test dot
 
-run()                            # Start the p5 sketch
+run()
 
 --- /code ---
 </div>
-
+--- /task ---
 
 --- task ---
 **Test:** Run your code.  
-You should see the world map.
---- /task ---
+A red dot should appear around the UK.
+
 
 <div class="c-project-output">
 <pre><img
   class="fit-picture"
-  src="images/mapdisplay.png"
-  alt=" A world map appears in the editor" />
+  src="images/ukdot.png"
+  alt=" A red dot appears over the UK" />
 </pre>
 </div>
+
+<div class="c-project-callout c-project-callout--tip">
+
+### Tip
+
+If the dot appears in the wrong place, check you are passing:
+- longitude first
+- latitude second
+
+</div>
+
+--- /task ---
+
+--- task ---
+
+Go to [google maps](https://www.google.com/maps){:target="_blank"} and find more coordinates to try in your code!
+
+<div class="c-project-callout c-project-callout--tip">
+
+### Tip
+
+- Change the numbers in `coords = get_xy_coords(-0.1276, 51.5072)` to move the marker.
+
+</div>
+
+--- /task ---

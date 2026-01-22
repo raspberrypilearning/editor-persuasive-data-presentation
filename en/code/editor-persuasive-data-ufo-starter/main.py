@@ -1,3 +1,2 @@
-#!/bin/python3
-
-# CSV Headings: 0 Year, 1 Month, 2 Day, 3 Name, 4 Location, 5 Country, 6 Latitude, 7 Longitude, 8 Elevation, 9 Type, 10 Status
+from p5 import *                 # Import p5 so we can draw shapes and images
+from xy import get_xy_coords     # Import a helper function to convert lat/long to x/y
