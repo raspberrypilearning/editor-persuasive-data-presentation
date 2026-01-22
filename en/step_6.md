@@ -1,10 +1,10 @@
-<h2 class="c-project-heading--task">Plot all sightings as simple dots</h2>
+<h2 class="c-project-heading--task">Draw different markers for different UFO shapes</h2>
 
 --- task ---
-Loop through the dataset and draw a dot for each sighting.
+Draw a different marker depending on the reported UFO shape.
 --- /task ---
 
-Convert each sighting’s latitude/longitude to x/y coordinates and draw a small marker.
+The dataset includes a `shape` field. You can use it to draw different symbols and colours.
 
 <div class="c-project-code">
 --- code ---
@@ -12,27 +12,49 @@ Convert each sighting’s latitude/longitude to x/y coordinates and draw a small
 language: python
 filename: main.py
 line_numbers: true
-line_number_start: 21
-line_highlights: 25-30,36
+line_number_start: 5
+line_highlights: 9-31,36
 ---
-                'latitude': info[6],
-                'longitude': info[7]
-            })
+def preload():
+    global world_map
+    world_map = load_image('mercator.jpeg')
+
+def draw_ufo(shape, x, y):
+    no_stroke()                  # Turn off outlines
+    if shape == 'fireball':
+        fill(252, 186, 3)        # Fireball colour
+        ellipse(x, y, 15, 10)    # Wide oval
+    elif shape == 'circle':
+        fill(32, 201, 49)        # Circle colour
+        ellipse(x, y, 8, 8)      # Small circle
+    elif shape == 'triangle':
+        fill(241, 245, 32)       # Triangle colour
+        triangle(x - 8, y - 15, x, y, x + 8, y - 15)  # Triangle marker
+    elif shape == 'light':
+        fill(247, 247, 245)      # Light colour
+        ellipse(x, y, 15, 15)    # Large circle
+    elif shape == 'disk':
+        fill(189, 189, 172)      # Disk colour
+        ellipse(x, y, 20, 10)    # Flat oval
+    elif shape == 'cylinder' or shape == 'cigar':
+        fill(73, 99, 230)        # Cylinder colour
+        rect(x, y, 20, 10)       # Rectangle marker
+    else:
+        fill(255, 0, 0)          # Default colour
+        ellipse(x, y, 10, 10)    # Default marker
 
 def draw_data():
-    no_stroke()                  # Turn off outlines so the dots are clearer
-    fill(255, 0, 0)              # Set the colour for the markers
-    for sighting in ufo_sightings:  # Draw one marker for each sighting
-        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))  # Convert lat/long to x/y
-        ellipse(coords['x'], coords['y'], 4, 4)  # Draw a small dot at the location
+    for sighting in ufo_sightings:
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))
+        draw_ufo(sighting['shape'], coords['x'], coords['y'])  # Draw the matching shape
 
 def setup():
-    size(991, 768)               # Set the size of the drawing window
-    image(world_map, 0, 0, width, height)  # Draw the map to fill the window
-    load_data('ufo-sightings.csv')  # Load the UFO sighting data
-    draw_data()                     # Plot the sightings as dots
+    size(991, 768)
+    image(world_map, 0, 0, width, height)
+    load_data('ufo-sightings.csv')
+    draw_data()
 
-run()                            # Start the p5 sketch
+run()
 
 --- /code ---
 </div>
@@ -40,13 +62,13 @@ run()                            # Start the p5 sketch
 
 --- task ---
 **Test:** Run your code.  
-You should see many small red dots on the map.
+Markers should now vary by colour and shape.
 --- /task ---
 
 <div class="c-project-output">
 <pre><img
   class="fit-picture"
-  src="images/red-dots.png"
-  alt=" A world map with many small red dots appearing on the map." />
+  src="images/colour-dots.png"
+  alt=" A world map with many small multicoloured dots appearing on the map in different shapes." />
 </pre>
 </div>

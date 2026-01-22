@@ -9,7 +9,6 @@ copyedit: true
 last_tested: '2026-01-14'
 steps:
   - title: What you will make
-  - title: Import p5 and the coordinate helper
   - title: Build and test - Load and display the map
     completion:
       - engaged
