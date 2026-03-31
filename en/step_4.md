@@ -1,11 +1,9 @@
-<h2 class="c-project-heading--task">Load UFO data from the CSV file</h2>
+<h2 class="c-project-heading--task">Plot all sightings as simple dots</h2>
 
---- task ---
-Read the UFO sightings CSV and store each row.
---- /task ---
+### Step 1
+Loop through the dataset and draw a dot for each sighting.
 
-You will store sightings data from a spreadsheet in a list, so you can use it later. 
-Import the `load_data` function from the helper file, then load the data:
+Convert each sighting’s latitude/longitude to x/y coordinates and draw a small marker.
 
 <div class="c-project-code">
 --- code ---
@@ -13,52 +11,40 @@ Import the `load_data` function from the helper file, then load the data:
 language: python
 filename: main.py
 line_numbers: true
-line_number_start: 1
-line_highlights: 3,12-13
+line_number_start: 5
+line_highlights: 9-14, 20
 ---
-from p5 import *
-from xy import get_xy_coords
-from load_data import load_data
-
 def preload():
     global world_map
     world_map = load_image('mercator.jpeg')
 
+def draw_data():
+    no_stroke()                  # Turn off outlines
+    fill(255, 0, 0)              # Red marker colour
+    for sighting in ufo_sightings:  # Loop through sightings
+        coords = get_xy_coords(float(sighting['longitude']), float(sighting['latitude']))  # Convert lon/lat to x/y
+        ellipse(coords['x'], coords['y'], 4, 4)  # Draw a small dot
+
 def setup():
     size(991, 768)
     image(world_map, 0, 0, width, height)
-    load_data('ufo-sightings.csv')  # Load the data
-    print(ufo_sightings[0])         # Print the first row
+    load_data('ufo-sightings.csv')
+    draw_data()                     # Plot the dots
 
 run()
 
 --- /code ---
 </div>
 
---- task ---
-**Test:** Run your code.
-You should see the information in the first line of the spreadsheet `ufo-sightings.csv` written in the Text Output window:
+
+### Step 2
+**Test:** Run your code.  
+You should see many small red dots on the map.
 
 <div class="c-project-output">
 <pre><img
   class="fit-picture"
-  src="images/textoutput.png"
-  alt=" A dictionary listing for a UFO sighting." />
+  src="images/red-dots.png"
+  alt=" A world map with many small red dots appearing on the map." />
 </pre>
 </div>
-
-<div class="c-project-callout c-project-callout--debug">
-
-### Debugging
-
-- If you can't see where the output is, click on the `Split view` tab above the map. You should see the data for one sighting printed in the text output.
-
-</div>
-
---- /task ---
-
---- task ---
-
-Change the number in `print(ufo_sightings[0])` and run your code again to see different data.
-
---- /task ---
