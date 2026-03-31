@@ -7,18 +7,18 @@ version: 4
 listed: true
 copyedit: true
 last_tested: '2026-01-14'
+landing: true
 steps:
-  - title: What you will make
-  - title: Build and test - Load and display the map
+  - title: Load and display the map
+  - title: Test coordinate conversion with one marker
     completion:
       - engaged
-  - title: Build and test - Test coordinate conversion with one marker
-  - title: Build and test - Load UFO data from the CSV file
+  - title: Load UFO data from the CSV file
     completion:
       - internal
-  - title: Expand and test - Plot all sightings as simple dots
-  - title: Expand and test - Draw different markers for different UFO shapes
+  - title: Plot all sightings as simple dots
+  - title: Draw different markers for different UFO shapes
     completion:
       - external
-  - title: Challenge - Improve the interaction
+  - title: "Challenge: Improve the interaction"
     challenge: true
