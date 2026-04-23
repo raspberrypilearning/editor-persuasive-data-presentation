@@ -1,7 +1,8 @@
 <h2 class="c-project-heading--task">Draw different markers for different UFO shapes</h2>
 
-### Step 1
 Draw a different marker depending on the reported UFO shape.
+
+<h2 class="c-project-heading--explainer">Follow these instructions</h2>
 
 The dataset includes a `shape` field. You can use it to draw different symbols and colours.
 
@@ -58,9 +59,8 @@ run()
 --- /code ---
 </div>
 
+## Now run your code
 
-### Step 2
-**Test:** Run your code.  
 Markers should now vary by colour and shape.
 
 <div class="c-project-output">

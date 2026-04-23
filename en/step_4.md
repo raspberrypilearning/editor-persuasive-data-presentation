@@ -1,7 +1,8 @@
 <h2 class="c-project-heading--task">Plot all sightings as simple dots</h2>
 
-### Step 1
 Loop through the dataset and draw a dot for each sighting.
+
+<h2 class="c-project-heading--explainer">Follow these instructions</h2>
 
 Convert each sighting’s latitude/longitude to x/y coordinates and draw a small marker.
 
@@ -36,9 +37,8 @@ run()
 --- /code ---
 </div>
 
+## Now run your code
 
-### Step 2
-**Test:** Run your code.  
 You should see many small red dots on the map.
 
 <div class="c-project-output">

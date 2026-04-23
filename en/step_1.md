@@ -1,7 +1,8 @@
 <h2 class="c-project-heading--task">Load and display the map</h2>
 
-### Step 1
 Load the map image and display it in a p5 window.
+
+<h2 class="c-project-heading--explainer">Follow these instructions</h2>
 
 Use `preload()` to load the image before your sketch starts, then show it in `setup()`.
 
@@ -30,9 +31,8 @@ run()                            # Start the p5 sketch
 --- /code ---
 </div>
 
+## Now run your code
 
-### Step 2
-**Test:** Run your code.  
 You should see the world map.
 
 <div class="c-project-output">

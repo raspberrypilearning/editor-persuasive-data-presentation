@@ -1,7 +1,8 @@
 <h2 class="c-project-heading--task">Load UFO data from the CSV file</h2>
 
-### Step 1
 Read the UFO sightings CSV and store each row.
+
+<h2 class="c-project-heading--explainer">Follow these instructions</h2>
 
 You will store sightings data from a spreadsheet in a list, so you can use it later. 
 Import the `load_data` function from the helper file, then load the data:
@@ -34,8 +35,8 @@ run()
 --- /code ---
 </div>
 
-### Step 2
-**Test:** Run your code.
+## Now run your code
+
 You should see the information in the first line of the spreadsheet `ufo-sightings.csv` written in the Text Output window:
 
 <div class="c-project-output">
@@ -46,16 +47,12 @@ You should see the information in the first line of the spreadsheet `ufo-sightin
 </pre>
 </div>
 
-<div class="c-project-callout c-project-callout--debug">
-
 ### Debugging
+
+<div class="c-project-callout c-project-callout--debug">
 
 - If you can't see where the output is, click on the `Split view` tab above the map. You should see the data for one sighting printed in the text output.
 
 </div>
 
-
-### Step 3
-
 Change the number in `print(ufo_sightings[0])` and run your code again to see different data.
-

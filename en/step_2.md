@@ -1,7 +1,9 @@
 <!-- step_4.md -->
+
 <h2 class="c-project-heading--task">Test coordinate conversion with one marker</h2>
 
-### Step 1
+<h2 class="c-project-heading--explainer">Follow these instructions</h2>
+
 Convert one latitude/longitude pair into x/y coordinates and draw a marker.
 
 <div class="c-project-code">
@@ -26,8 +28,8 @@ run()
 --- /code ---
 </div>
 
-### Step 2
-**Test:** Run your code.  
+## Now run your code
+
 A red dot should appear around the UK.
 
 
@@ -39,9 +41,9 @@ A red dot should appear around the UK.
 </pre>
 </div>
 
-<div class="c-project-callout c-project-callout--tip">
-
 ### Tip
+
+<div class="c-project-callout c-project-callout--tip">
 
 If the dot appears in the wrong place, check you are passing:
 - longitude first
@@ -49,16 +51,12 @@ If the dot appears in the wrong place, check you are passing:
 
 </div>
 
-
-### Step 3
-
 Go to [google maps](https://www.google.com/maps){:target="_blank"} and find more coordinates to try in your code!
 
-<div class="c-project-callout c-project-callout--tip">
-
 ### Tip
+
+<div class="c-project-callout c-project-callout--tip">
 
 - Change the numbers in `coords = get_xy_coords(-0.1276, 51.5072)` to move the marker.
 
 </div>
-
