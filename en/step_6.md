@@ -20,4 +20,4 @@ Swap the background to `mercator_bw.png`
 
 ## Now run your code
 
-Confirm the observable result.
+Run your code and check that the map now shows the extra information or styling improvement you added.
