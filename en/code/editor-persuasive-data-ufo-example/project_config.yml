@@ -1,3 +1,4 @@
 name: "Persuasive Data Presentation: UFO Sightings Example"
 identifier: "editor-persuasive-data-ufo-example"
 type: 'python'
+build: true
